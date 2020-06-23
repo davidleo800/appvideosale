@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+   
+    <title>Ingresar</title>
+
+
+ 
+    <!-- Favicons -->
+<link rel="apple-touch-icon" href="/docs/4.4/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+<link rel="icon" href="/docs/4.4/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/docs/4.4/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="manifest" href="/docs/4.4/assets/img/favicons/manifest.json">
+<link rel="mask-icon" href="/docs/4.4/assets/img/favicons/safari-pinned-tab.svg" color="#563d7c">
+<link rel="icon" href="/docs/4.4/assets/img/favicons/favicon.ico">
+<meta name="msapplication-config" content="/docs/4.4/assets/img/favicons/browserconfig.xml">
+<meta name="theme-color" content="#563d7c">
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <link source="/app/assets/stylesheets/signin.scss" rel="stylesheet">
+  </head>
+  <body class="text-center" >
+  <h1 class="h3 mb-3 font-weight-normal">Ingresar</h1>
+
+ <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <form>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email</label>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", :class =>"form-control-m-3", :placeholder=>"Email" %>
+      <small id="emailHelp" class="form-text text-muted">No se compartirá este correo con ningún tercero</small>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Contraseña</label>
+      <%= f.password_field :password, autocomplete: "current-password", :class =>"form-control-m-3", :placeholder=>"Contraseña" %>
+    </div>
+    <% if devise_mapping.rememberable? %>
+    <div class="form-check">
+      <%= f.check_box :remember_me, :class=>"form-check-input" %>
+      <%= f.label :remember_me, :class=>"form-check-label" %>
+    </div>
+    <% end %>
+
+    <div class="actions">
+      <%= f.submit "Ingresar", :class=>"btn btn-primary" %>
+    </div>
+  
+  </form>
+ <% end %>
+<%= render "devise/shared/links" %>
+  <!--
+  <div class="checkbox mb-3">
+    <label>
+      <input type="checkbox" value="remember-me"> Remember me
+    </label>
+  </div>
+    -->
+  <p class="mt-5 mb-3 text-muted">&copy; 2020 Universidad libre</p>
+
+
+</body>
+</html>
+

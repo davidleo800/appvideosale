@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.0.1">
+    <title>Registrarse</title>
+
+
+    <!-- Bootstrap core CSS -->
+<link href="/docs/4.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <!-- Favicons -->
+<link rel="apple-touch-icon" href="/docs/4.5/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+<link rel="icon" href="/docs/4.5/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/docs/4.5/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="manifest" href="/docs/4.5/assets/img/favicons/manifest.json">
+<link rel="mask-icon" href="/docs/4.5/assets/img/favicons/safari-pinned-tab.svg" color="#563d7c">
+<link rel="icon" href="/docs/4.5/assets/img/favicons/favicon.ico">
+<meta name="msapplication-config" content="/docs/4.5/assets/img/favicons/browserconfig.xml">
+<meta name="theme-color" content="#563d7c">
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="form-validation.css" rel="stylesheet">
+  </head>
+  <body class="bg-light">
+  <div class="container">
+    <div class="py-5 text-center">
+      <img class="d-block mx-auto mb-4" src="/docs/4.5/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+      <h2>Editar perfil <%= resource_name.to_s.humanize %></h2>
+    </div>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="col-md-8 order-md-1">
+      <h4 class="mb-3">Informacion general</h4>
+      <form class="needs-validation" novalidate>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <%= f.label :nombre %><br />
+            <%= f.text_field :nombre, autofocus: true, autocomplete: "nombre", :class=>"form-control" %>
+            <!--<label for="firstName">Nombre</label>
+            <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+            <div class="invalid-feedback">
+              Se requiere un nombre válido
+            </div>-->
+          </div>
+          <div class="col-md-6 mb-3">
+            <%= f.label :apellido %><br />
+            <%= f.text_field :apellido, autofocus: true, autocomplete: "apellido", :class=>"form-control" %>
+            <!--<label for="lastName">Apellido</label>
+            <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+            <div class="invalid-feedback">
+              Se requiere un nombre válido
+            </div>-->
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <!--<label for="username">Nombre de usuario</label>-->
+          <%= f.label :username %><br />
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">@</span>
+            </div>
+            <%= f.text_field :username, autofocus: true, autocomplete: "username", :class=>"form-control" %>
+            <!--<input type="text" class="form-control" id="username" placeholder="Nombre de usuario" required>
+            <div class="invalid-feedback" style="width: 100%;">
+              Nombre de usuario obligatorio
+            </div>-->
+          </div>
+        </div>
+
+        <div class="mb-3">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", :class=>"form-control" %>
+          <!--<label for="email">Email</label>
+          <input type="email" class="form-control" id="email" placeholder="you@example.com">
+          <div class="invalid-feedback">
+            Please enter a valid email address for shipping updates.
+          </div>-->
+        </div>
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+        <% end %>
+        <div class="mb-3">
+          <%= f.label :password %>
+          <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %><br />
+          <%= f.password_field :password, autocomplete: "new-password", :class=>"form-control" %>
+          <!--<label for="pass">Contraseña</label>
+          <input type="text" class="form-control" id="address" required>
+          <div class="invalid-feedback">
+            ingrese contraseña
+          </div>-->
+        </div>
+        <div class="mb-3">
+          <%= f.label :password_confirmation %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", :class=>"form-control" %>
+          <!--<label for="pass">Repite la contraseña</label>
+          <input type="text" class="form-control" id="address" required>
+          <div class="invalid-feedback">
+            Repite la contraseña
+          </div>-->
+        </div>  
+        <!--
+        <h4 class="mb-3">Pago</h4>
+
+        <div class="d-block my-3">
+          <div class="custom-control custom-radio">
+            <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
+            <label class="custom-control-label" for="credit">Tarjeta de Crédito</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
+            <label class="custom-control-label" for="debit">Tarjeta de Débito</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
+            <label class="custom-control-label" for="paypal">PayPal</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="cc-name">Nombre de tarjeta</label>
+            <input type="text" class="form-control" id="cc-name" placeholder="" required>
+            <small class="text-muted">Nombre completo como se muestra en la tarjeta</small>
+            <div class="invalid-feedback">
+              Name on card is required
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="cc-number">Número de tarjeta</label>
+            <input type="text" class="form-control" id="cc-number" placeholder="" required>
+            <div class="invalid-feedback">
+              Número de tarjeta es requerido
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3 mb-3">
+            <label for="cc-expiration">Vencimiento</label>
+            <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
+            <div class="invalid-feedback">
+              Fecha de vencimiento obligatorio
+            </div>
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="cc-cvv">CVV</label>
+            <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
+            <div class="invalid-feedback">
+              Código de seguridad obligatorio
+            </div>
+          </div>
+        </div>
+        -->
+        <hr class="mb-4">
+        <div class="mb-3">
+          <%= f.label :current_password %> <i>Se requiere*</i><br />
+          <%= f.password_field :current_password, autocomplete: "Contraseña actual", :class=>"form-control" %>
+          
+        </div>  
+        <%= f.submit "Actualizar", :class=>"btn btn-primary btn-lg btn-block" %>
+        <!--<button class="btn btn-primary btn-lg btn-block" type="submit">Registrar</button>-->
+      </form>
+    </div>
+    <% end %>
+    <h3>Cancelar mi cuenta</h3>
+
+<p>Cancelación de cuenta <%= button_to "Cancelar mi cuenta", registration_path(resource_name), data: { confirm: "¿Estás seguro?" }, method: :delete %></p>
+
+<%= link_to "Atrás", :back %>
+  </div>
+
+  <footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">&copy; 2020 Universidad libre</p>
+
+  </footer>
+</div>
+</body>
+</html>
+
